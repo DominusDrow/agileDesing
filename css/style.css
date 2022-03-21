@@ -1,0 +1,106 @@
+/****Reset CSS****/
+
+:root{
+	--main-font: sans-serif;
+	--font-size: 16px;	
+	--main-color:#DAF7A6; 
+	--second-color:#2e4053;  
+	--main-modal-color:rgba(218,247,166,0.85);
+	--second-modal-colar:rgba(46,64,83,0.85);
+	--container-with:1200px;
+}
+
+html{
+	box-sizing: border-box;
+	font-family: var(--main-font);
+	font-size: var(--font-size);
+	scroll-behavior: smooth;	/*hace la transicion en el mismo documento*/
+}
+
+*,
+*:before,
+*::after{
+	box-sizing: inherit;
+}
+
+body{
+	margin: 0;
+	overflow-x:hidden;	/*todo lo que se desborde en horizontal se oculte*/
+}
+
+body{
+	max-width: 100%;
+	height: auto;
+}
+
+header{
+	position: sticky;	/*se comporta estatico cuando llega al top*/
+	z-index: 999;
+	top: 0;
+	padding: 1rem;
+	background-color: var(--main-color);
+	color:var(--second-color);
+}
+
+header h1{
+	margin: 0 auto;
+	margin-right: 67%;
+	display: inline;
+}
+
+.section{
+	padding: 2rem;
+	padding-top: 4rem;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	max-width: var(--container-with);
+	min-height: 100vh;		/*se le da como altura minima el todal de la pantalla*/	
+	text-align: center;
+}
+
+footer{
+	height: 3em;
+	background: #ff7675;
+	text-align: center;
+	color:#dfe6e9;
+	padding-top: 2em;
+	clear: both;
+}
+
+
+/*********BOTONES PRINCPALES**************/
+#btn-register{
+  padding: 10px;
+	margin-right: 1%;
+  background: #fff;
+  color: var(--second-color);
+  border: 1px solid var(--main-color);
+	border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+}
+
+#btn-register:hover {
+  transform: scale(0.9);
+}
+
+#btn-login{
+  padding: 10px;
+  background: var(--second-color);
+  color: #fff;
+  border: 1px solid var(--second-color);
+	border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+}
+
+#btn-login:hover {
+  transform: scale(0.9);
+}
+
+/*********Diviciones informativas**************/
+.info-divs{
+	display:inline;
+	width: 30%;
+}
