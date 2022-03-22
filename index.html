@@ -6,34 +6,99 @@
     <meta charset="UTF-8"/>
     <meta name="description" content="In this web site the usesrs could them do CRC targets and users stories"/>
     <meta name="author" content="DominusDrow"/>
-    <link rel="stylesheet" href="css/style.css">
+
+    <!--BOOSTRAP CDN-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
 </head>
 
 <body data-dark> 
-	<header>
-		<h1>Agile Desing</h1>
-    <button id="btn-register">Registrarse</button>
-    <button id="btn-login">Iniar seción</button>
-	</header>
-        <section id="seccion1" class="section" data-scroll-spy>
-            <h2>Una herramienta para el desarrollo</h2>  
-            <div class="info-divs">
-                <p>Crea targetas CRC ilimitadas para tu proycto</p>
-            </div>
-            <div class="info-divs">
-                <p>Lleva el control de todas las historias de usuario y su estatus</p>
-            </div>
-            <div class="info-divs">
-                <p>Invita a colaboradores para asignarles historias de usuario</p>
-            </div>
-        </section>
 
-    </main>
+    <!--Barra de navegación-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Agile Desing</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#singupModal">Registrarse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#singinModal">Iniciar seción</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logout">Cerrar seción</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <footer>
-    </footer>
+    <!--Ventanas modales-->
+    <div class="modal fade" id="singupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Registrarse</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form id="singup-form">
+                  <div class="form-group">
+                      <input type="text" id="singup-email" class="form-control" placeholder="Email" required>
+                  </div>
+                  <div class="form-group">
+                      <input type="password" id="singup-password" class="form-control" placeholder="Password" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Entrar</button>
+              </form>
+         </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <script src="../js/ejercicios_dom.js" type="module"></script>
+    <div class="modal fade" id="singinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Iniciar seción</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form id="login-form">
+                  <div class="form-group">
+                      <input type="text" id="login-email" class="form-control" placeholder="Email" required>
+                  </div>
+                  <div class="form-group">
+                      <input type="password" id="login-password" class="form-control" placeholder="Password" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Entrar</button>
+              </form>
+         </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <!--Bootstrap scripts-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+    <!--Custom scripts-->
+    <script src="./js/main.js" type="module"></script>
 </body>
 
 </html>
