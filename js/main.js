@@ -5,8 +5,8 @@ const d = document;
 const singup = d.getElementById("singup-form");
 const singin = d.getElementById("login-form");
 const logout = d.getElementById("logout");
-const singupModal = new bootstrap.Modal(document.getElementById('singupModal'), {keyboard: false})
-const singinModal = new bootstrap.Modal(document.getElementById('singinModal'), {keyboard: false})
+const singupModal = new bootstrap.Modal(d.getElementById("singupModal"));
+const singinModal = new bootstrap.Modal(d.getElementById("singinModal"));
 
 //REGISTRARSE
 singup.addEventListener("submit", (e) =>{
@@ -17,10 +17,9 @@ singup.addEventListener("submit", (e) =>{
 
   createUserWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
-      //clear form
       singup.reset();
-      //close form
       singupModal.hide(); 
+      d.querySelector(".modal-backdrop").classList.remove("modal-backdrop");
       alert("registro correcto!");
     })
 })
@@ -34,10 +33,9 @@ singin.addEventListener("submit", (e) =>{
 
   signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
-      //clear form
       singin.reset();
-      //close form
       singinModal.hide(); 
+      d.querySelector(".modal-backdrop").classList.remove("modal-backdrop");
       alert("inicio de seción correcto!");
     })
   
