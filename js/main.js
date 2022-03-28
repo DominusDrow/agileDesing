@@ -1,12 +1,17 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"; 
-import { auth } from "./firebase.js";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"; 
+import { collection } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { db, auth, provider } from "./firebase.js";
 
 const d = document;
 const singup = d.getElementById("singup-form");
+const googleLogin = d.getElementById("googleLogin");
 const singin = d.getElementById("login-form");
 const logout = d.getElementById("logout");
 const singupModal = new bootstrap.Modal(d.getElementById("singupModal"));
 const singinModal = new bootstrap.Modal(d.getElementById("singinModal"));
+
+const infoSec = d.querySelector(".info-section");
+const proyectsList = d.querySelector(".proyects");
 
 //REGISTRARSE
 singup.addEventListener("submit", (e) =>{
@@ -20,7 +25,18 @@ singup.addEventListener("submit", (e) =>{
       singup.reset();
       singupModal.hide(); 
       d.querySelector(".modal-backdrop").classList.remove("modal-backdrop");
-      alert("registro correcto!");
+      infoSec.classList.add("hide");
+    })
+})
+
+//REGISTRARSE CON GOOGLE
+googleLogin.addEventListener("click", e => {
+  signInWithPopup(auth, provider)
+    .then(result => {
+      alert("si se pudo");
+    })
+    .catch(err => {
+      alert("no se pudo");
     })
 })
 
@@ -36,7 +52,7 @@ singin.addEventListener("submit", (e) =>{
       singin.reset();
       singinModal.hide(); 
       d.querySelector(".modal-backdrop").classList.remove("modal-backdrop");
-      alert("inicio de seción correcto!");
+      infoSec.classList.add("hide");
     })
   
 })
@@ -44,6 +60,15 @@ singin.addEventListener("submit", (e) =>{
 logout.addEventListener("click", e => {
   e.preventDefault();
   auth.signOut().then(() => {
-    alert("seción cerrada")
+    infoSec.classList.remove("hide");
   })
 })
+
+//MOSTRAR PROYECTOS DE USUARIO
+
+
+
+
+//EVENTOS
+
+//comprobar usuario autentificado
