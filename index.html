@@ -24,13 +24,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
+                    <li class="nav-item logged-in hide">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#singupModal">Registrarse</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item logged-in hide">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#singinModal">Iniciar seción</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item logged-out hide">
                         <a class="nav-link" href="#" id="logout">Cerrar seción</a>
                     </li>
                 </ul>
@@ -84,7 +84,10 @@
                   <div class="form-group">
                       <input type="password" id="login-password" class="form-control" placeholder="Password" required>
                   </div>
-                  <button type="submit" class="btn btn-primary">Entrar</button>
+                  <br>
+                  <div class="d-grid grap-1">
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                  </div>
               </form>
          </div>
           <div class="modal-footer">

@@ -34,6 +34,10 @@ googleLogin.addEventListener("click", e => {
   signInWithPopup(auth, provider)
     .then(result => {
       alert("si se pudo");
+      singup.reset();
+      singupModal.hide(); 
+      d.querySelector(".modal-backdrop").classList.remove("modal-backdrop");
+      infoSec.classList.add("hide");
     })
     .catch(err => {
       alert("no se pudo");
@@ -70,5 +74,25 @@ logout.addEventListener("click", e => {
 
 
 //EVENTOS
+const loginCheck = user => {
+  if(user){
+    d.querySelectorAll(".logged-in").forEach(link => link.classList.add("hide"))
+    d.querySelectorAll(".logged-out").forEach(link => link.classList.remove("hide"))
+  }
+  else{
+    d.querySelectorAll(".logged-in").forEach(link => link.classList.remove("hide"))
+    d.querySelectorAll(".logged-out").forEach(link => link.classList.add("hide"))
+  }
+}
 
 //comprobar usuario autentificado
+auth.onAuthStateChanged(user => {
+  if(user){
+    loginCheck(user);
+    alert("un usuario registrado");
+  }
+  else{
+    loginCheck(user);
+    alert("nadie registrado");
+  }
+})
