@@ -75,10 +75,8 @@ addProyect.addEventListener("click", async (e) =>{
     ]
   })
 
-    addProyectForm.reset();
-    addProyectModal.hide(); 
-    d.querySelector(".modal-backdrop").classList.remove("modal-backdrop");
-    getProyects(currentUser);
+  location.reload();
+  getProyects(currentUser);
 })
 
 //DESPLEGAR UN PROYECTO
