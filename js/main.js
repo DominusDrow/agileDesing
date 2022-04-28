@@ -124,10 +124,12 @@ d.addEventListener("click", e => {
     type.insertBefore(newComp,type.querySelector(".addNew"));
 
   }
-
+  
   //recorrer el carrusel
-  if(e.target.matches(".carousel-control-next")){
-    const nowNode = e.target.parentElement.querySelector(".active");
+  if(e.target.matches(".next") || e.target.matches(".fa-arrow-right")){
+    let nowNode = e.target.matches(".next")
+      ? e.target.parentElement.parentElement.querySelector(".active")
+      : e.target.parentElement.parentElement.parentElement.querySelector(".active");
 
     if(nowNode.nextElementSibling != null){
       nowNode.classList.remove("active");
@@ -135,8 +137,10 @@ d.addEventListener("click", e => {
     }
   }
 
-  if(e.target.matches(".carousel-control-prev")){
-    const nowNode = e.target.parentElement.querySelector(".active");
+  if(e.target.matches(".prev") || e.target.matches(".fa-arrow-left")){
+    let nowNode = e.target.matches(".prev")
+      ? e.target.parentElement.parentElement.querySelector(".active")
+      : e.target.parentElement.parentElement.parentElement.querySelector(".active");
     
     if(nowNode.previousElementSibling != null){
       nowNode.classList.remove("active");
