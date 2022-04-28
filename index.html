@@ -25,10 +25,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item logged-in hide">
-                        <a class="nav-link" href="#" id="googleSingup">Ingresar</a>
+                        <a class="nav-link" href="#" id="googleSingup"> <i class="fa-solid fa-location-arrow"></i> Ingresar</a>
                     </li>
                     <li class="nav-item logged-out hide">
-                        <a class="nav-link" href="#" id="logout">Cerrar seción</a>
+                        <a class="nav-link" href="#" id="logout"> <i class="fa-solid fa-right-from-bracket"></i> Cerrar seción</a>
                     </li>
                 </ul>
             </div>
@@ -36,7 +36,7 @@
     </nav>
 
     <!--Ventanas modales-->
-    <div class="modal fade" id="addProyect" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal fade" id="addProyect" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -59,6 +59,47 @@
         </div>
       </div>
     </div>
+
+   <div class="modal fade" id="addColab" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nuevo colaborador</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form id="new-colab">
+                  <div class="form-group">
+                      <input type="text" id="add-colab" class="form-control" placeholder="correo del colaborador" required>
+                  </div>
+                  <br>
+                  <div class="d-grid grap-1">
+                    
+                    <button type="button" class="btn btn-success" id="newColab">Agregar colaborador</button>
+                  </div>
+              </form>
+         </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="modal fade bd-example-modal-sm" id="save" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      Los datos se guardaron correctamente
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bd-example-modal-sm" id="delate" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+       El elemento se borró correctamente
+    </div>
+  </div>
+</div>
 
   <!--Contenido principal-->
   <section class="info-section py-2">
@@ -121,16 +162,17 @@
       </div>
     </div>
   </div>
-  <button class="carousel-control-prev border border-light" type="button" >
-    Ante
+  <button class="carousel-control-prev " type="button" >
+    <h1><i class="fa-solid fa-arrow-left"></i></h1>
   </button>
-  <button class="carousel-control-next border border-light" type="button" >
-    Sig
+  <button class="carousel-control-next " type="button" >
+    <h1><i class="fa-solid fa-arrow-right"></i></h1>
   </button>
   <br>
   <div class="container col-md-0 offset-md-3">
-    <button type="button" class="btn btn-success saveDB">Guardar Cambios</button>
-    <button type="button" class="btn btn-success">Agregar colaborador</button>
+    <button type="button" class="btn btn-success saveDB" data-bs-toggle="modal" data-bs-target="#save">Guardar Cambios</button>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addColab">Agregar colaborador</button>
+    <button type="button" class="btn btn-danger delateNode" data-bs-toggle="modal" data-bs-target="#delate">Borrar historia</button>
   </div>
 </div>
 
@@ -147,9 +189,13 @@
         <br>
         <br>
         <br>
+        <br>
         <button type="button" class="btn btn-primary ">
           <h5 class="addNewText"> + Agregar una Nueva Tarjeta CRC</h5>
         </button>
+        <br>
+        <br>
+        <br>
         <br>
         <br>
         <br>
@@ -160,15 +206,16 @@
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <h1><i class="fa-solid fa-arrow-left"></i></h1>
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <h1><i class="fa-solid fa-arrow-right"></i></h1>
   </button>
   <br>
   <div class="container col-md-0 offset-md-3">
-    <button type="button" class="btn btn-success saveDB">Guardar Cambios</button>
-    <button type="button" class="btn btn-success">Agregar colaborador</button>
+    <button type="button" class="btn btn-success saveDB" data-bs-toggle="modal" data-bs-target="#save">Guardar Cambios</button>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addColab">Agregar colaborador</button>
+    <button type="button" class="btn btn-danger delateNode" data-bs-toggle="modal" data-bs-target="#delate">Borrar crc</button>
   </div>
   <br>
 </div>
@@ -226,10 +273,18 @@
 </div>
 <br>
 
-<label for="basic-url" class="form-label">Tabla Responsabilidad-Colaboración</label>
+<label for="basic-url" class="form-label text-center">Tabla Responsabilidad-Colaboración</label>
 <div class="input-group mb-3">
-  <input type="text" class="form-control respond" placeholder="Responsabilidad" aria-label="Username">
-  <input type="text" class="form-control colab" placeholder="Colaboración" aria-label="Server">
+  <input id="respond" type="text" class="form-control" placeholder="Responsabilidad" aria-label="Username">
+  <input id="colab" type="text" class="form-control" placeholder="Colaboración" aria-label="Server">
+</div>
+<div class="input-group mb-3">
+  <input id="respond1" type="text" class="form-control" placeholder="Responsabilidad" aria-label="Username">
+  <input id="colab1" type="text" class="form-control" placeholder="Colaboración" aria-label="Server">
+</div>
+<div class="input-group mb-3">
+  <input id="respond2" type="text" class="form-control" placeholder="Responsabilidad" aria-label="Username">
+  <input id="colab2" type="text" class="form-control" placeholder="Colaboración" aria-label="Server">
 </div>
 </div>
    
@@ -244,6 +299,7 @@
   
   <!--Lista de proyectos-->
   <div class="container p-2 page1User hide">
+    <h3> <i class="fa-solid fa-diagram-project"></i> Tus proyectos</h3>
     <div class="row">
       <div class="col-md-14 offset-md-0">
         <ul class="list-group proyects">
@@ -253,7 +309,7 @@
         <div class="d-grid grap-1">
           <div class="container col-md-4 offset-md-4" >
             <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addProyect">
-              <h3>+ Agregar Nuevo proyecto</h3>
+              <h3><i class="fa-solid fa-plus"></i> Agregar Nuevo proyecto</h3>
             </button>
           </div>
         </div>

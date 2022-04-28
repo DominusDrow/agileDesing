@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"; 
-import { collection, where, query, getDocs, addDoc, Timestamp, updateDoc, deleteField} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import {  onAuthStateChanged, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"; 
+import { collection, where, query, doc, getDocs, addDoc, Timestamp, updateDoc, deleteField, arrayUnion, arrayRemove} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 import { db, auth, provider } from "./firebase.js";
 
 const d = document;
@@ -8,6 +8,8 @@ const logout = d.getElementById("logout");
 const addProyect = d.getElementById("newProyect");
 const addProyectForm = d.getElementById("new-proyect")
 const addProyectModal = new bootstrap.Modal(d.getElementById("addProyect"));
+const addColabForm = d.getElementById("new-colab")
+const addColabModal = new bootstrap.Modal(d.getElementById("addColab"));
 
 const infoSec = d.querySelector(".info-section");
 const proyectsList = d.querySelector(".proyects");
@@ -42,7 +44,7 @@ const showProyects = list => {
       const li = `
         <div >
           <li class="list-group-item list-group-item-action" style="cursor:pointer" >
-            <h2 class="text-center deployProyect">${proyect.title}</h2>
+            <h2 id="${doc.id}" class="text-center deployProyect">${proyect.title}</h2>
           </li>
         </div>
       `;
@@ -147,47 +149,95 @@ d.addEventListener("click", e => {
     
     let array = null; 
     const sliderMain = e.target.parentElement.parentElement;
-    const nameProy = e.target.parentElement.parentElement.parentElement.querySelector(".deployProyect").textContent; 
+    const idProy =  e.target.parentElement.parentElement.parentElement.querySelector(".deployProyect").id; 
 
     if(sliderMain.classList.contains("stories")){
       array = sliderMain.querySelectorAll(".user_story");
-      delateNode(nameProy,1);
+      delateNode(idProy,1);
 
       array.forEach(el => {
-
+        addNode(el,idProy,1);
       })
     }
     if(sliderMain.classList.contains("crc")){
       array = sliderMain.querySelectorAll(".crc_card");
-      delateNode(nameProy,2);
+      delateNode(idProy,2);
 
       array.forEach(el => {
-
+        addNode(el,idProy,2);
       })
     }
-
   }
+
+  //Borrar un nodo
+  if(e.target.matches(".delateNode")){
+    const sliderMain = e.target.parentElement.parentElement.querySelector(".carousel-inner");
+    const node = sliderMain.querySelector(".active");
+    node.classList.remove("active");
+    node.nextElementSibling.classList.add("active");
+    sliderMain.removeChild(node);
+  }
+
+  //Agregar un colaborador
+  if(e.target.matches("#newColab")){
+    addColabForm.reset();
+    addColabModal.hide(); 
+    d.querySelector(".modal-backdrop").classList.remove("modal-backdrop");
+  }
+
 
 })
 
-const delateNode = async ( proy,op) => {
-  const proyect = query(collection(db,"Proyects"), where("author","==",currentUser.uid), where("title","==",proy));
-  const querySnapshot = await getDocs(proyect);
-  if(op==1)
-  querySnapshot.forEach(async doc => {
-    const field = await updateDoc(doc, {
-      user_storys:deleteField()
+const delateNode = async ( id,op ) => {
+  const proyRef = doc(db,'Proyects',id);
+
+  if(op == 1){
+    await updateDoc(proyRef, {
+      user_storys : deleteField()
     });
-  })
+  }
 
-  if(op==2)
-    querySnapshot.forEach(async doc => {
-      const field = await updateDoc(doc, {
-        crc_card:deleteField(),
-      });
-    })
-
+  if(op == 2){
+    await updateDoc(proyRef, {
+      crc_card : deleteField()
+    });
+  }
 }
+
+const addNode = async ( el,id,op ) => {
+  const proyRef = doc(db,'Proyects',id);
+
+  if(op == 1){
+    await updateDoc(proyRef, {
+      user_storys : arrayUnion({
+        story: el.querySelector("#story").value,
+        num : el.querySelector("#num").value,
+        value : el.querySelector("#value").value,
+        date : el.querySelector("#date").value,
+        time : el.querySelector("#time").value,
+        description : el.querySelector("#description").value,
+        obs : el.querySelector("#obs").value
+      })
+    });
+  }
+
+  if(op == 2){
+    await updateDoc(proyRef, {
+      crc_card : arrayUnion({
+        class: el.querySelector("#class").value,
+        superClass : el.querySelector("#superClass").value,
+        subClass : el.querySelector("#subClass").value,
+        respond :  el.querySelector("#respond").value,
+        respond1 :  el.querySelector("#respond1").value,
+        respond2 :  el.querySelector("#respond2").value,
+        colab : el.querySelector("#colab").value,
+        colab1 : el.querySelector("#colab1").value,
+        colab2 : el.querySelector("#colab2").value,
+      })
+    });
+  }
+}
+
 
 const getProyect = async (slider1,slider2, proy) => {
   const proyect = query(collection(db,"Proyects"), where("author","==",currentUser.uid), where("title","==",proy));
@@ -208,13 +258,13 @@ const showProyect = (slider1,slider2,list) => {
         workspace1.insertBefore(newUserStory, slider1.querySelector(".carousel-item"));
         
         const userStory = slider1.querySelector(".carousel-item");
-        userStory.querySelector("#story").textContent = el.story;
-        userStory.querySelector("#num").textContent = el.num;
-        userStory.querySelector("#value").textContent = el.value;
-        userStory.querySelector("#date").textContent = el.date;
-        userStory.querySelector("#time").textContent = el.time;
-        userStory.querySelector("#description").textContent = el.description;
-        userStory.querySelector("#obs").textContent = el.obs;
+        userStory.querySelector("#story").value = el.story;
+        userStory.querySelector("#num").value = el.num;
+        userStory.querySelector("#value").value = el.value;
+        userStory.querySelector("#date").value = el.date;
+        userStory.querySelector("#time").value = el.time;
+        userStory.querySelector("#description").value = el.description;
+        userStory.querySelector("#obs").value = el.obs;
 
       });
 
@@ -226,6 +276,15 @@ const showProyect = (slider1,slider2,list) => {
         workspace2.insertBefore(newCrcCard, slider2.querySelector(".carousel-item"));
         
         const crcCard = slider2.querySelector(".carousel-item");
+        crcCard.querySelector("#class").value = el.class;
+        crcCard.querySelector("#superClass").value = el.superClass;
+        crcCard.querySelector("#subClass").value = el.subClass;
+        crcCard.querySelector("#respond").value = el.respond;
+        crcCard.querySelector("#respond1").value = el.respond1;
+        crcCard.querySelector("#respond2").value = el.respond2;
+        crcCard.querySelector("#colab").value = el.colab;
+        crcCard.querySelector("#colab1").value = el.colab1;
+        crcCard.querySelector("#colab2").value = el.colab2;
 
       });
 
