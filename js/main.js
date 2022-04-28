@@ -339,7 +339,12 @@ const getProyects = async user => {
 
 //MOSTRAR DATOS DEL USUARIO
 const showUserData = user => {
-  d.getElementById("user-info").innerHTML = `
+  const info = d.getElementById("user-info");
+  
+  if(info.classList.contains("hide"))
+    info.classList.remove("hide");
+
+  info.innerHTML = `
     <img src="${user.photoURL}" width="100" class="d-block mx-auto rounded-circle">
     <span><h3 class="text-center text-dark">${user.displayName}</h3></span>
   `;
