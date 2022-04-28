@@ -25,10 +25,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item logged-in hide">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#singupModal">Registrarse</a>
-                    </li>
-                    <li class="nav-item logged-in hide">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#singinModal">Iniciar seción</a>
+                        <a class="nav-link" href="#" id="googleSingup">Ingresar</a>
                     </li>
                     <li class="nav-item logged-out hide">
                         <a class="nav-link" href="#" id="logout">Cerrar seción</a>
@@ -39,54 +36,21 @@
     </nav>
 
     <!--Ventanas modales-->
-    <div class="modal fade" id="singupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addProyect" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Nuevo Usuario</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Nuevo proyecto</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-              <form id="singup-form">
+              <form id="new-proyect">
                   <div class="form-group">
-                    <input type="text" id="singup-email" class="form-control" placeholder="Email" required>
-                  </div>
-                  <br>
-                  <div class="form-group">
-                    <input type="password" id="singup-password" class="form-control" placeholder="Password" required>
+                      <input type="text" id="add-proyect" class="form-control" placeholder="Titulo" required>
                   </div>
                   <br>
                   <div class="d-grid grap-1">
-                    <button type="submit" class="btn btn-secondary">Registrarse</button>
-                    <button type="button" class="btn btn-success" id="googleLogin">Registrarse con Google</button>
-                  </div>
-              </form>
-         </div>
-          <div class="modal-footer">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="singinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Iniciar seción</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <form id="login-form">
-                  <div class="form-group">
-                      <input type="text" id="login-email" class="form-control" placeholder="Email" required>
-                  </div>
-                  <br>
-                  <div class="form-group">
-                      <input type="password" id="login-password" class="form-control" placeholder="Password" required>
-                  </div>
-                  <br>
-                  <div class="d-grid grap-1">
-                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <button type="button" class="btn btn-success" id="newProyect">Crear proyecto</button>
                   </div>
               </form>
          </div>
@@ -131,22 +95,171 @@
     </div>
   </section>
 
-  <!--CONTENIDO DE USUARIO-->
-
-  <!--Lista de proyectos-->
-  <div class="container p-2">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <ul class="list-group proyects">
-          <li class="list-group-item list-group-item-action">
-            <h3 class="text-center">Agregar Nuevo proyecto</h3>
-          </li>
-        </ul>
+  <!--TEMPLETES-->
+<!--user stories-->
+<div id="carouselExampleFade" class="carousel slide carousel-fade hide stories" data-bs-ride="carousel">
+  <br>
+  <h3 class="text-center text-secondary">Historias de usuario</h3>
+  <div class="carousel-inner">
+    <div class="carousel-item addNew border">
+      <div class="container col-md-4 offset-md-4" >
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <button type="button" class="btn btn-primary">
+          <h5 class="addNewText"> + Agregar una Nueva Historia de usuario </h5>
+        </button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
       </div>
     </div>
   </div>
+  <button class="carousel-control-prev border border-light" type="button" >
+    Ante
+  </button>
+  <button class="carousel-control-next border border-light" type="button" >
+    Sig
+  </button>
+  <br>
+  <div class="container col-md-0 offset-md-3">
+    <button type="button" class="btn btn-success saveDB">Guardar Cambios</button>
+    <button type="button" class="btn btn-success">Agregar colaborador</button>
+  </div>
+</div>
 
-  <!--Menu-->
+<!--crc Cards-->
+<div id="carouselExampleControlsNoTouching" class="carousel slide hide crc" data-bs-touch="true" data-bs-interval="false">
+  <br>
+  <h3 class="text-center text-secondary">Tarjetas CRC</h3>
+  <div class="carousel-inner">
+    <div class="carousel-item addNew border">
+      <div class="container col-md-4 offset-md-4" >
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <button type="button" class="btn btn-primary ">
+          <h5 class="addNewText"> + Agregar una Nueva Tarjeta CRC</h5>
+        </button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  </button>
+  <br>
+  <div class="container col-md-0 offset-md-3">
+    <button type="button" class="btn btn-success saveDB">Guardar Cambios</button>
+    <button type="button" class="btn btn-success">Agregar colaborador</button>
+  </div>
+  <br>
+</div>
+
+
+<!--template user_story-->
+<div class="carousel-item hide user_story">
+
+ <div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">Historia de usuario</span>
+  <input id="story" type="text" class="form-control" placeholder="nombre" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group mb-3">
+  <span class="input-group-text">Número</span>
+  <input id="num" type="text" class="form-control" placeholder="1-100" aria-label="Username">
+  <span class="input-group-text">Valor (Prioridad)</span>
+  <input id="value" type="text" class="form-control" placeholder="1-100" aria-label="Server">
+</div>
+
+<div class="input-group mb-3">
+  <span class="input-group-text">Fecha</span>
+  <input id="date" type="text" class="form-control" placeholder="dd/mm/aaaa" aria-label="Username">
+  <span class="input-group-text">Tiempo desarrollo (costo)</span>
+  <input id="time" type="text" class="form-control" placeholder="[numero] Dias/Semanas" aria-label="Server">
+</div>
+
+<div class="input-group">
+  <span class="input-group-text">Descripción</span>
+  <textarea id="description" class="form-control" aria-label="With textarea"></textarea>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-text">Observaciones</span>
+  <textarea id="obs" class="form-control" aria-label="With textarea"></textarea>
+</div>
+</div>
+ 
+<!--template crc_card-->
+<div class="carousel-item hide crc_card">
+
+ <div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">Clase</span>
+  <input id="class" type="text" class="form-control" placeholder="nombre" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group">
+  <span class="input-group-text">Lista de superClases</span>
+  <textarea id="superClass" class="form-control" aria-label="With textarea"></textarea>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-text">Lista de subClases</span>
+  <textarea id="subClass" class="form-control" aria-label="With textarea"></textarea>
+</div>
+<br>
+
+<label for="basic-url" class="form-label">Tabla Responsabilidad-Colaboración</label>
+<div class="input-group mb-3">
+  <input type="text" class="form-control respond" placeholder="Responsabilidad" aria-label="Username">
+  <input type="text" class="form-control colab" placeholder="Colaboración" aria-label="Server">
+</div>
+</div>
+   
+
+  <!--CONTENIDO DE USUARIO-->
+
+  <!--Informacion del usuario-->
+  <div>
+    <br>
+    <div id="user-info" class="container"></div>
+  </div>
+  
+  <!--Lista de proyectos-->
+  <div class="container p-2 page1User hide">
+    <div class="row">
+      <div class="col-md-14 offset-md-0">
+        <ul class="list-group proyects">
+          <!--lista de proyectos del usuario-->
+        </ul>
+        <br>
+        <div class="d-grid grap-1">
+          <div class="container col-md-4 offset-md-4" >
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addProyect">
+              <h3>+ Agregar Nuevo proyecto</h3>
+            </button>
+          </div>
+        </div>
+     </div>
+    </div>
+  </div>
 
 
   <!--Footer-->
@@ -158,7 +271,7 @@
           Agile Desing
         </a>
         <ul class="col-2 list-unstyled">
-          <li class="font-weight-blod text-uppercase">Recursos</li>
+          <li class="font-weight-blod text-uppercase" >Recursos</li>
           <br>
           <li class="d-flex justify-content-between">
             <a href="https://www.facebook.com/" class="text-reset"><i class="fa-brands fa-facebook-f"></i></a>
